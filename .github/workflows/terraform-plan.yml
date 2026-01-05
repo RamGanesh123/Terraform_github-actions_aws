@@ -39,16 +39,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           
 
-      # - name: Terraform Init
-      #   run: |
-      #     cd terraform-github-actions-aws/envs/${{ github.event.inputs.environment }}
-      #     terraform init
-          
       - name: Terraform Init
         run: |
           cd terraform-github-actions-aws/envs/${{ github.event.inputs.environment }}
-          terraform init -input=false -backend-config="bucket=my-terraform-state-bucket" -backend-config="key=dev/terraform.tfstate" -backend-config="region=us-east-1" -backend-config="dynamodb_table=terraform-locks" -upgrade -verbose
-
+          terraform init
+          
+     
 
       - name: Terraform Format
         run: |
